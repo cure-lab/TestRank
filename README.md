@@ -1,6 +1,8 @@
-# TestRank: Bringing Order into Unlabeled Test Instances for Deep Learning Tasks
 
-This repository is the implementation of [TestRank](https://arxiv.org/abs/2105.10113). 
+
+# TestRank in Pytorch
+
+This repository is the implementation of [TestRank: Bringing Order into Unlabeled Test Instances for Deep Learning Tasks](https://arxiv.org/abs/2105.10113). 
 
 
 ## Requirements
@@ -53,7 +55,21 @@ Our model achieves the following performance on :
 
 >📋  Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it. 
 
+## Citation
+If you use this code, or development from it, please cite our paper:
+```
+@article{yu2021nips,
+  title={TestRank: Bringing Order into Unlabeled Test Instances for Deep Learning Tasks},
+  author={Yu Li, Min Li, Qiuxia Lai, Yannan Liu, and Qiang Xu},
+  journal={NeurIPS},
+  year={2021}
+}
+```
+
 
 ## Contributing
 
 >📋  Pick a licence and describe how to contribute to your code repository. 
+
+## Contact
+If there are any questions, feel free to send a message to yuli@cse.cuhk.edu.hk
