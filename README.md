@@ -1,4 +1,4 @@
-# TestRank: Bringing Order into Unlabeled TestInstances for Deep Learning Tasks
+# TestRank: Bringing Order into Unlabeled Test Instances for Deep Learning Tasks
 
 This repository is the implementation of [TestRank](https://arxiv.org/abs/2105.10113). 
 
