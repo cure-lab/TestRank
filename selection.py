@@ -886,7 +886,7 @@ def main():
             mix_test_set_t = torch.utils.data.ConcatDataset([train_set_t, test_set_t])
             test_set_t = torch.utils.data.Subset(mix_test_set_t, rest_indices)  
             feature_extractor_net = models.resnet18(pretrained=False).to(device)
-            feature_extractor_net.load_state_dict(torch.load('./byol/cifar10_fc_224.pt', map_location=device))
+            feature_extractor_net.load_state_dict(torch.load('./ckpt_byol/cifar10_fc_224.pt', map_location=device))
         if args.dataset == 'stl10':
             unsup_img_size = 96 
             test_transform = torchvision.transforms.Compose([
@@ -904,7 +904,7 @@ def main():
             mix_test_set_t = torch.utils.data.ConcatDataset([train_set_t, test_set_t])
             test_set_t = torch.utils.data.Subset(mix_test_set_t, rest_indices)  
             feature_extractor_net = models.resnet18(pretrained=False, num_classes=num_classes).to(device)
-            feature_extractor_net.load_state_dict(torch.load('./byol/stl10_fe_96.pt', map_location=device))
+            feature_extractor_net.load_state_dict(torch.load('./ckpt_byol/stl10_fe_96.pt', map_location=device))
         elif args.dataset == 'svhn':
             unsup_img_size = 224
             test_transform = torchvision.transforms.Compose([
@@ -921,27 +921,7 @@ def main():
             mix_test_set_t = torch.utils.data.ConcatDataset([train_set_t, test_set_t])
             test_set_t = torch.utils.data.Subset(mix_test_set_t, rest_indices)
             feature_extractor_net = models.resnet18(pretrained=False, num_classes=num_classes).to(device)
-            feature_extractor_net.load_state_dict(torch.load('./byol/svhn_fe_224.pt', map_location=device))
-        elif args.dataset == 'emnist':
-            unsup_img_size = 32
-            test_transform = torchvision.transforms.Compose([
-                torchvision.transforms.Resize(size=unsup_img_size),
-                torchvision.transforms.ToTensor()])
-            train_set_t = torchvision.datasets.EMNIST(root=data_dir,
-                                                    split='bymerge',
-                                                    train=True,
-                                                    transform=test_transform,
-                                                    download=False)
-            test_set_t = torchvision.datasets.EMNIST(root=data_dir,
-                                                  split='bymerge', 
-                                                  train=False,
-                                                  transform=test_transform,
-                                                  download=False)
-            mix_test_set_t = torch.utils.data.ConcatDataset([train_set_t, test_set_t])
-            test_set_t = torch.utils.data.Subset(mix_test_set_t, rest_indices)
-            feature_extractor_net = mymodels.small_resnet10(pretrained=False, channels=1).to(device)
-            feature_extractor_net.load_state_dict(torch.load('./byol/checkpoints/official-{}/resnet18-model-95-{}.pt'.format(args.dataset, unsup_img_size), map_location=device))
-
+            feature_extractor_net.load_state_dict(torch.load('./ckpt_byol/svhn_fe_224.pt', map_location=device))
 
         # remove the fc layer
         feature_extractor_net = nn.Sequential(*list(feature_extractor_net.children())[:-1])
