@@ -99,7 +99,7 @@ feature_extractor_id=0
 
 # run testing
 if [ "$function" == "selection_v2" ]; then 
-    for MODEL_NO in 2; do
+    for MODEL_NO in 0 1 2; do
         echo $MODEL_NO
         MODEL2TEST=${MODEL}
         MODEL2TESTPATH=./checkpoint/${DATASET}/ckpt_bias/${MODEL}_${MODEL_NO}_b.t7 
