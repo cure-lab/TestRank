@@ -39,31 +39,32 @@ We illustrate these steps as the following.
  
 ### 2.1. Download the Pre-trained DL model under test
  
-- [ResNet-34](https://drive.google.com/drive/folders/1sLXG9wlLHjUVF_FRNW0nX9h4M7EXGjBS?usp=sharing) trained on STL10 dataset.
+ - [ResNet-18](https://github.com/yuli-yl/TestRank/tree/master/checkpoint/cifar10/ckpt_bias) trained on CIFAR10 dataset. 
 
-  Please download the three classifiers **resnet34_0_b.t7, resnet34_1_b.t7, resnet34_2_b.t7** to folder  **./checkpoint/stl10/ckpt_bias/**
+- [Wide-ResNet](https://github.com/yuli-yl/TestRank/tree/master/checkpoint/svhn/ckpt_bias) trained on SVHN dataset.
 
-  To make sure the correctness of the downloaded file, please check your **md5** after you download the weight files:
+- [ResNet-34](https://github.com/yuli-yl/TestRank/tree/master/checkpoint/stl10/ckpt_bias) trained on STL10 dataset.
+
+Please download the classifiers to corresponding folder  **./checkpoint/{dataset}/ckpt_bias/**
+
+  <!-- To make sure the correctness of the downloaded file, please check your **md5** after you download the weight files:
 
       --resnet34_0_b.t7: e6e518998e9be957c77afe8a33aff590
       --resnet34_1_b.t7: 44a5f49cc833421f0e489a5e0aa37bac
-      --resnet34_2_b.t7: 388598538a54aa2f96c082c07a08fbc3
-
-- [ResNet-18](https://drive.google.com/drive/folders/1sLXG9wlLHjUVF_FRNW0nX9h4M7EXGjBS?usp=sharing) trained on CIFAR10 dataset. 
-
-
-- [Wide-ResNet](https://drive.google.com/drive/folders/1sLXG9wlLHjUVF_FRNW0nX9h4M7EXGjBS?usp=sharing) trained on SVHN dataset.
+      --resnet34_2_b.t7: 388598538a54aa2f96c082c07a08fbc3 -->
 
 
 If you want to train your own classifiers, please refer to the **Training** part.
 
-### 2.2 Download the Feature extractor
 
-We papare a pretrained [feature extractor](https://drive.google.com/file/d/1KSqCBgaxow93gogIlS5BuwFxcOHIvF2c/view?usp=sharing) for the STL10 dataset: . Please put the downloaded file in the "./byol/checkpoints/official-stl10/" folder.
+### 2.2. Download the Feature extractor
 
-      The md5 of this file is: fe7e3bc9f846e0250c7e6951034ec13f
+We papare pretrained [feature extractor](https://github.com/yuli-yl/TestRank/tree/master/ckpt_byol) for the each (e.g. CIFAR-10, SVHN, STL10) dataset. Please put the downloaded file in the "./ckpt_byol/" folder.
 
-### 2.3 Perform Test Selection
+<!-- The md5 of this file is: fe7e3bc9f846e0250c7e6951034ec13f -->
+If you want to train your own classifiers, please refer to the **Training** part.
+
+### 2.3. Perform Test Selection
    Call the 'run.sh' file with argument 'selection':
 
       ./run.sh selection
@@ -84,7 +85,7 @@ We papare a pretrained [feature extractor](https://drive.google.com/file/d/1KSqC
                   --learn_mixed                          # use mlp to combine intrinsic and contextual attributes; otherwise they are brute force combined (multiplication two scores)
                   --baseline_gini                        # Use certain baseline method to perform selection, otherwise leave it blank
 
-   - The result is stored in 'save_path/date/dataset_model/xxx_result.csv' in where xxx stands for the selection method used (e.g. for testrank, the file would be gnn_result.csv)
+   - The result is stored in '{save_path}/{date}/{dataset}_{model}/xxx_result.csv' in where xxx stands for the selection method used (e.g. for testrank, the file would be gnn_result.csv)
 
    
    - The **TRC** value is in the last column, and the forth column shows the corresponding budget in percent.
@@ -95,6 +96,7 @@ We papare a pretrained [feature extractor](https://drive.google.com/file/d/1KSqC
 
 ## 3. Training
 
+### 3.1. Train classifier
 If you want to train your own DL model instead of using the pretrained ones, run this command:
 
 ```train
@@ -109,6 +111,8 @@ If you want to train your own DL model instead of using the pretrained ones, run
 - The code used to train the model are resides in the **train_classifier.py** file. 
 If you want to change the dataset or model architecture, please modify 'DATASET=dataset_name' or 'MODEL=name'with the desired ones in the **run.sh** file.
 
+### 3.2 Train BYOL Feature Extractor
+Please refer to this [code](https://github.com/sthalles/PyTorch-BYOL).
 
 
 ## 4. Contact
