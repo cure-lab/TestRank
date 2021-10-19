@@ -2,7 +2,7 @@
 
 Code for the paper [TestRank: Bringing Order into Unlabeled Test Instances for Deep Learning Tasks](https://arxiv.org/abs/2105.10113) by Yu Li, Min Li, Qiuxia Lai, Yannan Liu, and Qiang Xu. 
 
-If you use this code, or development from it, please cite our paper:
+If you find this repository useful for your work, please consider citing it as follows:
 ```
 @article{yu2021testrank,
   title={TestRank: Bringing Order into Unlabeled Test Instances for Deep Learning Tasks},
